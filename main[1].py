@@ -11,20 +11,7 @@ ui = Builder.load_string("""
         id:gate_way_screen
     ForgotPasswordScreen:
 """)
-x = ["HoneybeePersonalUseRegular-YzBn4", 
-        "LemonMilkBold-gx2B3", 
-        "LibraryRecordsRegular-qZW66", 
-        "LibraryRecordsRegular-qZW66", 
-        "QuiteMagicalRegular-8VA2", 
-        "StoryElementvRegular-X3RWa", 
-        "VeganStylePersonalUse-5Y58", 
-        "Amsterdam-ZVGqm", 
-        "AngelesPersonalUseItalic-2Odz8", 
-        "BeautifulPeoplePersonalUse-dE0g", 
-        "CarandaPersonalUse-qLOq", 
-        "FlorPersonalUseRegular-rgpoy", 
-        "LucyTheCatRegular-Bg9x", 
-        "VacationsInParadisePersonalUse-qwml"]
+
 class MainScreenManager(ScreenManager):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
