@@ -171,12 +171,15 @@ ui = Builder.load_string("""
                     LinkUserScreen:
 """)
 class HomeLoadScreen(MDScreen):
+    #home load screen 
     pass
 class BasicTouchBox(TouchBox):
     def addLoadingScreen(self):
+        #add loading screen
         self.parent.root.root.ids.menu_sub_screen_manager.transition = SlideTransition(direction = "left")
         self.parent.root.root.ids.menu_sub_screen_manager.current = "home_load_screen"
     def changeIconColor(self, color =[1, 1, 1, 1]):
+        #change color of icon
         self.ids.icon_button.text_color = color
     def checkScreenExistence(self, screen_name):
         if not self.parent.root.root.parent.has_screen(screen_name):
