@@ -182,19 +182,23 @@ class BasicTouchBox(TouchBox):
         #change color of icon
         self.ids.icon_button.text_color = color
     def checkScreenExistence(self, screen_name):
+        #check if main screen manager contains screen x
         if not self.parent.root.root.parent.has_screen(screen_name):
             return False
         return True
 class WalletTouchBox(BasicTouchBox):
     def unscheduleLoadingState(self):
         Clock.unschedule(self.goToWallet)
+        #stop loading and switch from loading screen to empty screen
         self.parent.root.root.ids.menu_sub_screen_manager.transition = SlideTransition(direction = "left")
         self.parent.root.root.ids.menu_sub_screen_manager.current = "empty_screen"
         self.parent.root.root.loading = False
     def goToLoading(self):
+        #swith top loading top screen
         self.parent.root.parent.home_screen.parent.transition = SlideTransition(direction = "left")
         self.parent.root.parent.home_screen.parent.current = "loading_screen"
     def respondToTouch(self):
+        #when touched respond by going to wallet_screen
         if not self.parent.root.root.loading:
             self.parent.root.root.loading = True
             screen_exist = self.checkScreenExistence("wallet_screen")
@@ -208,6 +212,7 @@ class WalletTouchBox(BasicTouchBox):
                 self.main.current = "wallet_screen"
                 self.ids.icon_button.text_color = [1, 1, 1, 1]
     def goToWallet(self, seconds):
+        #call WalletScreen and add it to main screen manager
         self.main = self.parent.root.parent.home_screen.parent
         if not self.main.has_screen("wallet_screen"):
             wallet_screen = WalletScreen()
@@ -218,12 +223,15 @@ class WalletTouchBox(BasicTouchBox):
         self.ids.icon_button.text_color = [1, 1, 1, 1]
 class LinkUserTouchBox(BasicTouchBox):
     def respondToTouch(self):
+        #when touched respond by going to link_user_screen
         self.parent.root.parent.transition = SlideTransition(direction = "left")
         self.parent.root.parent.current = "link_user_screen"
 class PayTouchBox(BasicTouchBox):
     def unscheduleLoadingState(self):
+        #unschedule addPayScreen function loading thread
         Clock.unschedule(self.addPayScreen)
     def addPayScreen(self, seconds):
+        #add pay_screen concurrently by loading
         if not self.parent.root.parent.home_screen.parent.has_screen("pay_screen"):
             pay_screen = PayScreen()
             self.parent.root.parent.home_screen.parent.add_widget(pay_screen)
@@ -236,6 +244,8 @@ class PayTouchBox(BasicTouchBox):
             self.unscheduleLoadingState()
         self.ids.icon_button.text_color = [1, 1, 1, 1]
     def respondToTouch(self):
+        #when touched check if main screen manager top layer is on loading
+        #if it not on loading it schedule addPayScreen function addition thread
         if not self.parent.root.root.loading:
             self.parent.root.root.loading = True
             self.parent.root.root.addLoadingScreen()
