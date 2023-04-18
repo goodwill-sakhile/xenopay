@@ -44,10 +44,10 @@ ui = Builder.load_string("""
         MDBoxLayout:
 """)
 class OkButton(TouchBox):
+    #press this button so that you can continue using the app
     def respondToTouch(self):
         self.root.parent.transition = SlideTransition(direction = "right")
         self.root.parent.current = self.root.previous_screen
 class ErrorScreen(MDScreen):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.previous_screen = ""
+      
