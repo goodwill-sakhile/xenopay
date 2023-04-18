@@ -48,9 +48,7 @@ ui = Builder.load_string("""
 """)
 class TouchBox(MDBoxLayout):
 	def on_touch_down(self, touch):
-		print(",::,46!6!,9,:%-@,-@-9,'889999799799998")
 		if ((touch.x > self.pos[0] and touch.x < self.size[0]) and (touch.y > self.pos[1] and touch.y < self.size[1])):
-			print("Touch Touch")
 			self.respondToTouch()
 	def respondToTouch(self):
 		pass
