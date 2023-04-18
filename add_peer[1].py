@@ -56,12 +56,13 @@ ui = Builder.load_string("""
         BoxLayout:
 """)
 class AddPeerScreen(MDScreen):
+    #parent containing all widget to add peer screen
     pass
 class AddUserButton(MDBoxLayout):
     def on_touch_down(self, touch):
+        #Call respondToTouch function when box is touched
         if ((touch.x > self.pos[0] and touch.x < self.size[0]) and (touch.y > self.pos[1] and (touch.y - self.pos[1]) < self.size[1])):
             self.respondToTouch()
     def respondToTouch(self):
-	    email = self.parent.root.ids.email_label_object.text
-	    relation = self.parent.root.ids.relation_label_object.text
-	    print(email, relation)
+       #get user email and relation
+	 
