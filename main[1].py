@@ -21,6 +21,7 @@ class MainScreenManager(ScreenManager):
         self.current = "gateway_screen"
 class MainApp(MDApp):
     def build(self):
+        #call the top screen manager of the whole app
         return MainScreenManager()
 if __name__ == "__main__":
     MainApp().run()
