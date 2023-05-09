@@ -2,6 +2,7 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.app import MDApp
 from kivymd.uix.button import BaseButton
 from kivy.lang import Builder
+#user interface script for digit buttons used for entering amount 
 ui = Builder.load_string("""
 <FillRoundFlatButton>:
     text:""
