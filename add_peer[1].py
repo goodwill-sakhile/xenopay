@@ -1,6 +1,7 @@
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.lang import Builder
+#user interface for adding peers that you will share money with
 ui = Builder.load_string("""
 <AddPeerScreen>:
     id:add_peer_screen_object
@@ -65,4 +66,6 @@ class AddUserButton(MDBoxLayout):
             self.respondToTouch()
     def respondToTouch(self):
        #get user email and relation
-	 
+	    email = self.parent.root.ids.email_label_object.text
+	    relation = self.parent.root.ids.relation_label_object.text
+	    print(email, relation)
