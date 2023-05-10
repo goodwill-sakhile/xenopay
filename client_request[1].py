@@ -17,7 +17,7 @@ def request(screen_manager_object, error_screen_object, current_screen,
             next_screen_object.transition = SlideTransition(direction = "left")
             next_screen_object.current = next_screen_object
     except:
-        print("Go to error screen")
+        #Go to error screen
         print("This object is : ", screen_manager_object)
         screen_manager_object.transition = SlideTransition(direction = "left")
         screen_manager_object.current = "error_screen"
