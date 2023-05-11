@@ -3,6 +3,7 @@ from touch import TouchBox
 from kivy.uix.screenmanager import SlideTransition
 from kivymd.uix.screen import MDScreen
 from kivy.lang import Builder
+#Error handler script
 ui = Builder.load_string("""
 <ErrorScreen>:
     id:error_screen
@@ -52,4 +53,4 @@ class ErrorScreen(MDScreen):
     #this screen emerge if an error has been encounterd
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.previous_screen = ""
+        sel
