@@ -49,5 +49,7 @@ class OkButton(TouchBox):
         self.root.parent.transition = SlideTransition(direction = "right")
         self.root.parent.current = self.root.previous_screen
 class ErrorScreen(MDScreen):
+    #this screen emerge if an error has been encounterd
     def __init__(self, **kwargs):
-      
+        super().__init__(**kwargs)
+        self.previous_screen = ""
