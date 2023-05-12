@@ -162,9 +162,11 @@ class TouchBox(MDBoxLayout):
             self.respondToTouch()
 class ForgotPasswordEmailButton(TouchBox):
     def goToLoadingScreen(self):
+        #keeps loading while the process is running concurrently
         self.screen_manager.transition = SlideTransition(direction = "left")
         self.screen_manager.current = "loading_screen"
     def makeRequest(self, seconds):
+        #makes requests to the server
         try:
             response = eval(requests.get("http://localhost:8080/gateway/forgot_password/", params = self.params).text)
             if response[0]  == 1:
