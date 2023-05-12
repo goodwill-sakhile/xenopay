@@ -179,6 +179,7 @@ class ForgotPasswordEmailButton(TouchBox):
             self.response = -2
             self.error_message = "Network connection failure"
     def determineNextScreen(self, seconds):
+        #decide the next screen to switch to
         if self.response == 1:
             Clock.schedule_once(self.createHomeScreen, 0)
         elif self.response == 0:
@@ -232,5 +233,3 @@ class Test(MDApp):
     def build(self):
         root = ForgotPasswordScreen()
         return root
-if __name__  == "__main__":
-    Test().run()
