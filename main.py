@@ -1,22 +1,17 @@
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.uix.screenmanager import ScreenManager
+from gate_screen import GateScreen
 from kivy.lang import Builder
-from login import LoginScreen
-from sign_up_screen import SignUpScreen
 from kivy.core.window import Window
+from home_screen import HomeScreen
 Window.size = (350, 600)
 root = Builder.load_string("""
 <MainBox>:
-    orientation:"vertical"
-    md_bg_color:[47/float(255), 79/float(255), 79/float(255), 1]
-    MDBoxLayout:
-        size_hint_y:None
-        height:"100dp"
-    MDBoxLayout:
-        ScreenManager:
-            LoginScreen:
-            SignUpScreen:
+    ScreenManager:
+        name:"main_screen"
+        HomeScreen:
+        GateScreen:
 """)
 class MainBox(MDBoxLayout):
     pass
