@@ -1,6 +1,7 @@
 from kivymd.app import MDApp 
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
+from kivy.uix.screenmanager import SlideTransition
 from kivymd.uix.gridlayout import MDGridLayout
 from kivy.lang import Builder
 root = Builder.load_string("""
@@ -50,8 +51,11 @@ root = Builder.load_string("""
 	name:"cash_in_screen"
 	MDBoxLayout:
 		orientation:"vertical"
-		CashInGridLayout:
-			cols:1
+		ScrollView:
+			size_hint:None, None
+			size:self.parent.size
+			CashInGridLayout:
+				cols:1
 <CashOutScreen>:
 	name:"cash_out_screen"
 <AccountTransactionHistoryScreen>:
@@ -62,6 +66,29 @@ root = Builder.load_string("""
 		MDBoxLayout:
 			size_hint_y:None
 			height:"100dp"
+			MDBoxLayout:
+				size_hint_x:None
+				width:"50dp"
+				MDIconButton:
+					size_hint:None, None
+					size:"50dp", "50dp"
+					icon_size:"30dp"
+					icon:"arrow-left-top"
+					theme_text_color:"Custom"
+					text_color:1, 1, 1, 1
+					pos_hint:{"center_x":.5, "center_y":.5}
+					on_press:self.goBackToHome()
+			MDBoxLayout:
+				MDLabel:
+					text:"Transaction History"
+					text_size:self.size
+					halign:"center"
+					valign:"middle"
+					color:1, 1, 1, 1
+					font_size:"25dp"
+			MDBoxLayout:
+				size_hint_x:None
+				width:"50dp"
 		MDBoxLayout:
 			Widget:
 			MDBoxLayout:
@@ -120,7 +147,6 @@ root = Builder.load_string("""
 							halign:"center"
 							valign:"middle"
 							color:1, 1, 1, 1
-				TransactionBar:
 				MDBoxLayout:
 					ScreenManager:
 						CashInScreen:
@@ -136,7 +162,7 @@ class CashInGridLayout(MDGridLayout):
 		self.bind(minimum_height = self.setter("height"))
 		self.addCashInBars()
 	def addCashInBars(self):
-		for i in range(5):
+		for i in range(15):
 			bar = TransactionBar()
 			self.add_widget(bar)
 class CashInScreen(MDScreen):
@@ -144,7 +170,9 @@ class CashInScreen(MDScreen):
 class CashOutScreen(MDScreen):
 	pass
 class AccountTransactionHistoryScreen(MDScreen):
-	pass
+	def goBackToHome(self):
+		self.parent.transition = SlideTransition(direction = "right")
+		self.parent.current = "home_screen"
 class TestApp(MDApp):
 	def build(self):
 		root = AccountTransactionHistoryScreen()
