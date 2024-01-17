@@ -1,6 +1,7 @@
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
+from kivy.uix.screenmanager import SlideTransition
 from kivy.uix.screenmanager import ScreenManager
 from kivy.lang import Builder
 root = Builder.load_string("""
@@ -16,6 +17,7 @@ root = Builder.load_string("""
 				size_hint:None, None
 				size:"50dp", "100dp"
 				orientation:"vertical"
+				Widget:
 				MDIconButton:
 					size_hint:None, None
 					size:"30dp", "30dp"
@@ -23,8 +25,20 @@ root = Builder.load_string("""
 					icon_size:"30dp"
 					theme_text_color:"Custom"
 					text_color:1, 1, 1, 1
+					pos_hint:{"center_x":.5, "center_y":.5}
+					on_press:self.goBackHome()
 				Widget:
 			MDBoxLayout:
+				MDLabel:
+					text:"Account Top Up"
+					text_size:self.size
+					halign:"center"
+					valign:"middle"
+					color:1, 1, 1, 1
+					font_size:"25dp"
+			MDBoxLayout:
+				size_hint_x:None
+				widtg:"50dp"
 		MDBoxLayout:
 			Widget:
 			MDBoxLayout:
@@ -83,7 +97,9 @@ root = Builder.load_string("""
 			Widget:
 """)
 class TopUpAccountScreen(MDScreen):
-	pass
+	def goBackHome(self):
+		self.parent.transition = SlideTransition(direction = "right")
+		self.parent.current = "home_screen"
 class TestApp(MDApp):
 	def build(self):
 		root = ScreenManager()
