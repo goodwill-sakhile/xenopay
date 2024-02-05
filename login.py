@@ -17,6 +17,7 @@ root = Builder.load_string("""
                 height:"60dp"
                 Widget:
                 MDTextField:
+                    id:email_login_object
                     size_hint_x:None
                     width:"300dp"
                     hint_text:"Email"
@@ -28,6 +29,7 @@ root = Builder.load_string("""
                 height:"60dp"
                 Widget:
                 MDTextField:
+                    id:password_login_object
                     size_hint_x:None
                     width:"300dp"
                     hint_text:"Password"
@@ -39,7 +41,7 @@ root = Builder.load_string("""
                 height:"50dp"
                 padding:10
                 Widget:
-                MDBoxLayout:
+                LoginButtonBox:
                     radius:[20, 20, 20, 20]
                     size_hint:None, None
                     size:"300dp", "30dp"
@@ -93,4 +95,8 @@ class SignUpBox(TouchBox):
         print("Respond to touch")
         self.root.parent.transition = SlideTransition(direction = "left")
         self.root.parent.current = "sign_up_screen"
-
+class LoginButtonBox(TouchBox):
+	def respondToTouch(self):
+		email = self.ids.email_login_object
+		password = self.ids
+		print(email, password)
