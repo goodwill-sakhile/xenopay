@@ -42,6 +42,8 @@ root = Builder.load_string("""
                 padding:10
                 Widget:
                 LoginButtonBox:
+                    root:login_screen
+                    id:login_button_box
                     radius:[20, 20, 20, 20]
                     size_hint:None, None
                     size:"300dp", "30dp"
@@ -87,7 +89,7 @@ root = Builder.load_string("""
                         color:[1, 1, 1, 1]
                         
                 Widget:
-""")
+""")	
 class LoginScreen(MDScreen):
     pass
 class SignUpBox(TouchBox):
@@ -97,6 +99,6 @@ class SignUpBox(TouchBox):
         self.root.parent.current = "sign_up_screen"
 class LoginButtonBox(TouchBox):
 	def respondToTouch(self):
-		email = self.ids.email_login_object
-		password = self.ids
+		email = self.root.ids.email_login_object
+		password = self.root.ids
 		print(email, password)
