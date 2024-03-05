@@ -1,6 +1,7 @@
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
+from kivy.uix.screenmanager import SlideTransition
 from touch import TouchBox
 from kivy.lang import Builder
 root = Builder.load_string("""
