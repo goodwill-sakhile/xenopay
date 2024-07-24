@@ -16,9 +16,7 @@ class MainScreen(MDScreen):
 	pass
 class XenopayApp(MDApp):
 	def build(self):
-		self.theme_cls.primary_color = "Orange"
 		root = MainScreen()
-		root.ids.login_screen_object.theme_cls = self.theme_cls 
 		return root
 if __name__ == "__main__":
 	XenopayApp().run()
