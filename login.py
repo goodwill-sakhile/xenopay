@@ -1,4 +1,5 @@
-from kivymd.uix.boxlyout import MDBoxLayout
+from kivymd.app import MDApp
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
 from kivy.uix.screenmanager import *
 from kivy.lang import Builder
@@ -43,11 +44,10 @@ ui = Builder.load_string("""
     id:login_screen_object
     MDBoxLayout:
         orientation:"vertical"
-        md_bd_color:47/float(255), 79/float(255), 79/float(255), 1
+        md_bg_color:0, 0, 0, 1
         MDBoxLayout:
             size_hint_y:None
             height:"60dp"
-            md_bg_color:0, 0, 0, 1
             MDLabel:
                 text:"Xenopay"
                 text_size:self.size
@@ -55,6 +55,8 @@ ui = Builder.load_string("""
                 valign:"middle"
                 color:1, 1, 1, 1
         MDBoxLaytout:
+            radius:[30, 30, 0, 0]
+            md_bd_color:47/float(255), 79/float(255), 79/float(255), 1
             FloatLayout:
                 size_hint:None, None
                 size:self.parent.size
@@ -63,7 +65,6 @@ ui = Builder.load_string("""
                     pos:self.parent.pos
                     Widget:
                     MDBoxLayout:
-                        radius:[30, 30, 0, 0]
                         spacing:10
                         size_hint_x:None
                         width:"300dp"
@@ -124,7 +125,7 @@ ui = Builder.load_string("""
                                             height:"50dp"
                                             padding:"5dp", "10dp"
                                             MDBoxLayout:
-                                                size_hin_y:None
+                                                size_hint_y:None
                                                 height:"30dp"
                                                 radius:30, 30, 30, 30
                                                 md_bg_color:0, 154/float(255), 220/float(255), 1
@@ -161,10 +162,10 @@ class LoginButton(TouchBox):
                 numeric += 1
             elif i in strange_char:
                 strange += 1
-        if ((alpha > 0) and (mixed > 0) and (strange > 0)):
+        if ((alpha > 0) and (strange > 0) and (numeric > 0)):
             mixed = True
         return mixed
-    def checkPassowrdValidity(self, password):
+    def checkPasswordValidity(self, password):
         password_valid = False
         if len(password) >= 8:
             password_valid = True
@@ -180,7 +181,6 @@ class LoginButton(TouchBox):
     def incorrectCredentialNotifyer(self, email_valid, password_valid):
         if email_valid != True:
             self.ids.error_message.text = "Email Enterd is not valid!"
-            self.ids.login_body_screen_manager.
         elif password_valid != True:
             self.ids.error_message.text = "Non Valid Password \n (Put alpha, digit, strange digit)"
     def respondToTouch(self):
@@ -201,3 +201,9 @@ class GoToSignUpButton(TouchBox):
         self.root.parent.current = "sign_up_screen"
 class LoginScreen(MDScreen):
     pass
+class TestApp(MDApp):
+    def build(self):
+        root = LoginScreen()
+        return root
+if __name__ == "__main__":
+    TestApp().run()
