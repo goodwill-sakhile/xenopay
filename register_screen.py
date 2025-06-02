@@ -91,13 +91,35 @@ root = Builder.load_string("""
             Widget:
 """)
 class SubScreenOneForwardButton(TouchBox):
+    def __init__(self, **kwargs):
+        self.user_params = {}
     def respondToTouch(self):
+        pass
+    def getAllUserDetails(self):
         print(self.root.ids)
         names = self.root.ids.names_text_box
         surname = self.root.ids.surname_text_box
         email = self.root.ids.email_text_box
-        password = self.root.ids.password_text_box
+    def validateEmail(self, email):
+        if "@" in email:
+            divider = email.index("@")
+            email_domain = email[divider + 1:]
+            if "." in email_domain:
+                return True
+        else:
+            False
+    def checkIfTextFieldEmpty(self, user_data):
+        if not user_data:
+            True
+        else:
+            False
+    def comparePasswordMatch(self)
+        password_one = self.root.ids.password_text_box
         password_two = self.root.ids.password_two_text_box
+        if password_one == passowrd_two:
+            True
+        else:
+            False
 class RegisterScreen(MDScreen):
     pass
 class RegisterTestApp(MDApp):
