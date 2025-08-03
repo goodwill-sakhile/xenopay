@@ -32,7 +32,3 @@
 - **JWT Authentication** – Token-based user authentication
 
 ---
-
-## 📂 Project Structure
-
-
